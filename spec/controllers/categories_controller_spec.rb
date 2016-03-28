@@ -28,11 +28,7 @@ describe CategoriesController, "/index" do
 
   describe "if :index template exists" do
     it "should render :index" do
-      pending "Stubbing #template_exists is not enough to fool Rails"
-      controller.stub!(:template_exists?) \
-        .and_return(true)
-
-      do_get
+      get 'index'
       response.should render_template(:index)
     end
   end
@@ -73,14 +69,14 @@ describe CategoriesController, '#show' do
     do_get
     response.should render_template('articles/index')
   end
-  
+
   it 'should render personal when template exists' do
     pending "Stubbing #template_exists is not enough to fool Rails"
     controller.stub!(:template_exists?) \
       .and_return(true)
     do_get
     response.should render_template('personal')
-  end  
+  end
 
   it 'should show only published articles' do
     do_get
@@ -94,7 +90,7 @@ describe CategoriesController, '#show' do
 
   describe "when rendered" do
     render_views
-  
+
     it 'should have a canonical URL' do
       do_get
       response.should have_selector('head>link[href="http://myblog.net/category/personal/"]')
@@ -154,7 +150,7 @@ describe CategoriesController, "password protected article" do
 
     assert_tag :tag => "input",
       :attributes => { :id => "article_password" }
-  end  
+  end
 end
 
 describe CategoriesController, "SEO Options" do

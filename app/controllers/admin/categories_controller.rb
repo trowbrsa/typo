@@ -4,10 +4,10 @@ class Admin::CategoriesController < Admin::BaseController
   def index; redirect_to :action => 'new' ; end
   def edit; new_or_edit;  end
 
-  def new 
+  def new
     respond_to do |format|
       format.html { new_or_edit }
-      format.js { 
+      format.js {
         @category = Category.new
       }
     end
@@ -23,14 +23,23 @@ class Admin::CategoriesController < Admin::BaseController
 
   private
 
+  # not sure if this is necessary
+  # def category_params
+  #   params.permit(category:[:id])
+  # end
+
   def new_or_edit
     @categories = Category.find(:all)
+    # params[:id] is nil currently. Do we need a private save method?
+    # the @category in the above 'new' method is not getting passed to here,
+    # so there are no params.
     @category = Category.find(params[:id])
+    # what does params[:category] do?
     @category.attributes = params[:category]
     if request.post?
       respond_to do |format|
         format.html { save_category }
-        format.js do 
+        format.js do
           @category.save
           @article = Article.new
           @article.categories << @category
