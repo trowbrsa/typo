@@ -11,9 +11,14 @@ describe Admin::CategoriesController do
     request.session = { :user => henri.id }
   end
 
-  it "test_index" do
+  it "successfully loads" do
     get :index
-    assert_response :redirect, :action => 'new'
+    expect(response.status).to eq 200
+  end
+
+  it "test_index" do
+   get :index
+   assert_response :redirect, :action => 'index'
   end
 
   describe "test_edit" do
