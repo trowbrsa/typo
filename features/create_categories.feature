@@ -24,7 +24,8 @@ Feature: Create Categories
       When I go to the edit page for "applesauce"
       And I fill in "Description" with "Tasty"
       And I press "Save"
-      And I should see "Category was successfully saved."
+      Then I should see "Category was successfully saved."
+      Then the "description" field for "applesauce" should be "tasty".
 
     Scenario: Cancel editing a category
       When I go to the edit page for "applesauce"

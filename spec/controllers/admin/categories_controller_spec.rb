@@ -16,6 +16,11 @@ describe Admin::CategoriesController do
     expect(response.status).to eq 200
   end
 
+  it "renders the correct template" do
+    get :new
+    expect(response).to render_template :new
+  end
+
   it "test_index" do
    get :index
    assert_response :redirect, :action => 'index'
