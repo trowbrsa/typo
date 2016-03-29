@@ -11,6 +11,6 @@ Feature: Merge articles
     Then I should not see "Merge Articles"
 
     Scenario: Admins can see the merge button
-      Given I am logged in as a user
+      When I am logged into the admin panel
       When I am on the new article page
       Then I should see "Merge Articles"
