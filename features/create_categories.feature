@@ -17,7 +17,7 @@ Feature: Create Categories
       And I fill in "Keywords" with "apples"
       And I fill in "Permalink" with "www.link.com"
       And I fill in "Description" with "A compelling description"
-      And  I press "Save"
+      And I press "Save"
       Then I should see "Category was successfully saved."
 
     Scenario: Edit a Category
