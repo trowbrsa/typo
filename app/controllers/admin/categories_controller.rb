@@ -23,18 +23,13 @@ class Admin::CategoriesController < Admin::BaseController
 
   private
 
-  # not sure if this is necessary
-  # def category_params
-  #   params.permit(category:[:id])
-  # end
-
   def new_or_edit
     @categories = Category.find(:all)
-    # params[:id] is nil currently. Do we need a private save method?
-    # the @category in the above 'new' method is not getting passed to here,
-    # so there are no params.
-    @category = Category.find(params[:id])
-    # what does params[:category] do?
+    if params[:id] == nil
+      @category = Category.new
+    else
+      @category = Category.find_by_id(params[:id])
+    end
     @category.attributes = params[:category]
     if request.post?
       respond_to do |format|

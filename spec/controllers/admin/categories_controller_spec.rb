@@ -12,7 +12,7 @@ describe Admin::CategoriesController do
   end
 
   it "successfully loads" do
-    get :index
+    get :new
     expect(response.status).to eq 200
   end
 
