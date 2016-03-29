@@ -18,6 +18,9 @@ module NavigationHelpers
     when /^the new article page$/
       '/admin/content/new'
 
+    when /^the edit page for "(.*)"$/
+      admin_categories_path(Category.find_by_name($1))
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
