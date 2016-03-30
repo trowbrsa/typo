@@ -74,6 +74,26 @@ Given /^I am logged in as a user$/ do
   end
 end
 
+And /^there are two similar posts$/ do
+  Article.create!({ :title => "Space",
+    :user_id => 1,
+    :body => 'All about space',
+    :author => 'admin',
+    :published => true })
+  Article.create!({ :title => "Outerspace",
+    :user_id => 1,
+    :body => 'more text',
+    :author => 'admin',
+    :published => true })
+end
+
+When /^I fill in "(.*?)" with the ID of the article with the title "(.*?)"$/ do |field, article_name|
+  # get the article that matches the name of the title
+  # fill in field with the article's id.
+  article = Article.where(title: article_name).first
+  fill_in(field, :with => article.id)
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
@@ -92,8 +112,7 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
-When /^I click on "(.*?)"$/ do |arg1|
-  # admin_content_path(Content.find_by_title($1))
+When /^I click on "(.*?)"$/ do |link|
   visit 'admin/content/edit/1'
 end
 
@@ -106,10 +125,6 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
-end
-
-When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
 end
 

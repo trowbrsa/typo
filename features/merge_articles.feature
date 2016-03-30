@@ -17,5 +17,15 @@ Feature: Merge articles
 
     Scenario: Admins can see the merge button when editing articles
       Given I am logged into the admin panel
-      When I am on the manage articles page
+      When I click on "Hello World!"
       Then I should see "Merge Articles"
+
+    Scenario: Admins can merge two different articles
+      And there are two similar posts
+      And I am logged into the admin panel
+      When I follow "Space"
+      And I fill in "Article ID" with the ID of the article with the title "Outerspace"
+      And I press "Merge"
+      Then I should be on the manage articles page
+      And I should see "Space"
+      And I should not see "Outerspace"
