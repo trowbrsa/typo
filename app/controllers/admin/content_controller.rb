@@ -37,6 +37,16 @@ class Admin::ContentController < Admin::BaseController
     new_or_edit
   end
 
+  def merge
+    if current_user.admin?
+      id = params[:id]
+      merge_id = params[:merge_with][:merge_id]
+      new_article = Article.find(id)
+      new_article.merge_with(merge_id)
+      redirect_to :action => :index
+    end
+  end
+
   def destroy
     @record = Article.find(params[:id])
 
@@ -234,10 +244,10 @@ class Admin::ContentController < Admin::BaseController
       @article.body = body[0]
       @article.extended = body[1]
     end
-
   end
 
   def setup_resources
     @resources = Resource.by_created_at
   end
+
 end
