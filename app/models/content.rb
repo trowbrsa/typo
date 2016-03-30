@@ -283,23 +283,6 @@ class Content < ActiveRecord::Base
     blog.url_for(redirects.last.from_path, :only_path => false)
   end
 
-  def merge_with(other_article_id)
-    article1 = Content.find(params[:id])
-    article2 = Content.where(:id == other_article_id)
-    body1 = article1.body
-    body2 = article2.body
-
-    newbody = body1 + body2
-
-    article1.body = newbody
-
-    comments1 = body1.comments
-    comments2 = body2.comments
-
-    newcomment = comments1 + comments2
-
-  end
-
 end
 
 class Object
