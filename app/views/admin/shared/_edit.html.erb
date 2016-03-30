@@ -10,7 +10,7 @@
    <% error_messages_for 'article' %>
    <%= form_tag :action=>"merge", :id => @article.id do %>
     <label for="merge_with"> <%= _("Article ID")%></label>
-    <%= number_field :merge_with, :merge_id %>
+    <%= text_field :merge_with, :merge_id %>
     <%= submit_tag("Merge") %>
   <% end %>
 <% end %>

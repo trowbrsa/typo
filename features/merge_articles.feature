@@ -24,7 +24,7 @@ Feature: Merge articles
       And there are two similar posts
       And I am logged into the admin panel
       When I follow "Space"
-      And I fill in "Article ID" with the ID of the article with the title "Outerspace"
+      And I fill in "merge_with" with the ID of the article with the title "Outerspace"
       And I press "Merge"
       Then I should be on the manage articles page
       And I should see "Space"
