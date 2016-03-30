@@ -92,6 +92,11 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
+When /^I click on "(.*?)"$/ do |arg1|
+  # admin_content_path(Content.find_by_title($1))
+  visit 'admin/content/edit/1'
+end
+
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
