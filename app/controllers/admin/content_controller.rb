@@ -41,8 +41,16 @@ class Admin::ContentController < Admin::BaseController
     if current_user.admin?
       id = params[:id]
       merge_id = params[:merge_with][:merge_id]
-      new_article = Article.find(id)
-      new_article.merge_with(merge_id)
+      if merge_id == id
+        flash[:error] = _("You cannot merge an article with itself")
+      elsif
+        Article.exists?(merge_id) && Article.exists?(id)
+        new_article = Article.find(id)
+        new_article.merge_with(merge_id)
+        flash[:error] = _("Articles successfully merged!")
+      else
+        flash[:error] = _("Article does not exist!")
+      end
       redirect_to :action => :index
     end
   end

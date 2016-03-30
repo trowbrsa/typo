@@ -17,5 +17,5 @@ Feature: Merge articles
 
     Scenario: Admins can see the merge button when editing articles
       Given I am logged into the admin panel
-      When I click on "Hello World!"
+      When I am on the manage articles page
       Then I should see "Merge Articles"
