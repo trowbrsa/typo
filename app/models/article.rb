@@ -468,13 +468,12 @@ class Article < Content
   end
 
   def merge_with(other_article_id)
-    # find each of the comments associated w/ the article
-    Article.find(other_article_id).comments.each do |comment|
-      # assign their article id to the id of the current article
+    merged_article = Article.find(other_article_id)
+    self.comments += merged_article.comments
+    merged_article.comments.each do |comment|
       comment.article_id = self.id
       comment.save
     end
-    merged_article = Article.find(other_article_id)
     self.body += " \n" + merged_article.body
     self.save
     merged_article.destroy
